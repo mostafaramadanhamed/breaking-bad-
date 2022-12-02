@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/bussnies_logic/cubit/movie_cubit.dart';
 import 'package:movie/bussnies_logic/cubit/movie_state.dart';
+import 'package:movie/presentation/widgets/character_item.dart';
 
 import '../../data/models/characters.dart';
 
@@ -27,12 +28,16 @@ class _CharactersScreenState extends State<CharactersScreen> {
           allCharacters=state.characters;
           return buildLoadedListWidget();
         }else{
-          return const Text('data');
+          return showLoadingIndicator();
         }
       },
     );
   }
-  buildLoadedListWidget(){
+  Widget showLoadingIndicator(){
+    return const Center(child:  CircularProgressIndicator(color: Colors.amberAccent,));
+   }
+
+  Widget buildLoadedListWidget(){
    return SingleChildScrollView(
       child: Container(
         color: Colors.grey,
@@ -44,16 +49,19 @@ class _CharactersScreenState extends State<CharactersScreen> {
       ),
     );
   }
-  buildCharactersList(){
+  Widget buildCharactersList(){
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
         childAspectRatio: 2/3,
           crossAxisSpacing: 1,
           mainAxisSpacing: 1,
-        ),
+        ),shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: allCharacters.length,
+        padding: EdgeInsets.zero,
         itemBuilder: (context,index){
-          return
+          return const CharacterItem(character: allCharacters,);
         });
   }
 
