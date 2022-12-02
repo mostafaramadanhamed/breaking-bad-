@@ -10,7 +10,7 @@ class Character {
  late List<int> appearance;
  late String portrayed;
  late String category;
- late List<int>betterCallSaulAppearance;
+ late List<dynamic>betterCallSaulAppearance;
 
 
 

@@ -1,6 +1,4 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../data/models/characters.dart';
 import '../../data/repository/characters_repository.dart';
 import 'movie_state.dart';
