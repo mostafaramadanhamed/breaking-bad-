@@ -1,11 +1,11 @@
 
 import '../../data/models/characters.dart';
 
-abstract class MovieState {}
+abstract class CharactersState {}
 
-class MovieInitial extends MovieState {}
+class CharactersInitial extends CharactersState {}
 
-class CharactersLoaded extends MovieState {
+class CharactersLoaded extends CharactersState {
   final List<Character>characters;
 
   CharactersLoaded(this.characters);

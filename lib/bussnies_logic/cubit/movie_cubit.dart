@@ -6,10 +6,10 @@ import '../../data/repository/characters_repository.dart';
 import 'movie_state.dart';
 
 
-class MovieCubit extends Cubit<MovieState> {
+class CharactersCubit extends Cubit<CharactersState> {
   final CharactersRepository charactersRepository;
   late List<Character>characters;
-  MovieCubit(this.charactersRepository) : super(MovieInitial());
+  CharactersCubit(this.charactersRepository) : super(CharactersInitial());
 
   List<Character>getAllCharacters(){
     charactersRepository.getAllCharacters().then((characters) {
