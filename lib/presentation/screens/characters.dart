@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/bussnies_logic/cubit/movie_cubit.dart';
 import 'package:movie/bussnies_logic/cubit/movie_state.dart';
+import 'package:movie/constants/colors.dart';
 import 'package:movie/presentation/widgets/character_item.dart';
 
 import '../../data/models/characters.dart';
@@ -34,13 +35,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
     );
   }
   Widget showLoadingIndicator(){
-    return const Center(child:  CircularProgressIndicator(color: Colors.tealAccent,));
+    return const Center(child:  CircularProgressIndicator(color: MyColors.primaryColor,));
    }
 
   Widget buildLoadedListWidget(){
    return SingleChildScrollView(
       child: Container(
-        color:Colors.teal.shade200,
+        color:MyColors.primaryColor.shade200,
         child: Column(
           children: [
             buildCharactersList()
@@ -68,7 +69,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.teal,
+      appBar: AppBar(backgroundColor: MyColors.primaryColor.shade200,
         elevation: 0,
         title: const Text('Characters'),
         centerTitle: true,
