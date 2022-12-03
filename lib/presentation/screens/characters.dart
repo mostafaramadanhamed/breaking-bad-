@@ -18,7 +18,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   void initState() {
     super.initState();
-    allCharacters=BlocProvider.of<CharactersCubit>(context).getAllCharacters();
+   BlocProvider.of<CharactersCubit>(context).getAllCharacters();
 
   }
   Widget buildBlocWidget(){
@@ -34,13 +34,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
     );
   }
   Widget showLoadingIndicator(){
-    return const Center(child:  CircularProgressIndicator(color: Colors.amberAccent,));
+    return const Center(child:  CircularProgressIndicator(color: Colors.tealAccent,));
    }
 
   Widget buildLoadedListWidget(){
    return SingleChildScrollView(
       child: Container(
-        color: Colors.grey,
+        color:Colors.teal.shade200,
         child: Column(
           children: [
             buildCharactersList()
@@ -57,7 +57,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
           crossAxisSpacing: 1,
           mainAxisSpacing: 1,
         ),shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: allCharacters.length,
         padding: EdgeInsets.zero,
         itemBuilder: (context,index){
@@ -68,8 +68,10 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar(backgroundColor: Colors.teal,
+        elevation: 0,
         title: const Text('Characters'),
+        centerTitle: true,
       ),
       body: buildBlocWidget(),
     );

@@ -18,7 +18,7 @@ class CharacterItem extends StatelessWidget {
           footer: Container(
           width: double.infinity,
           padding:const EdgeInsets.symmetric(vertical: 10.0,horizontal: 15.0,),
-          color: Colors.black54.withOpacity(0.3),
+          color: Colors.black.withOpacity(0.3),
           alignment: Alignment.bottomCenter,
           child: Text(character.name, style: const TextStyle(
             height: 1.3,
@@ -35,7 +35,7 @@ class CharacterItem extends StatelessWidget {
             FadeInImage(
             width: double.infinity,
             height: double.infinity,
-            placeholder:  AssetImage('assets/images/loading.gif'), image: NetworkImage(character.img)as ImageProvider,fit: BoxFit.cover,):Image.asset('assets/images/null.jpg'),
+            placeholder:  const AssetImage('assets/images/loading.gif'), image: NetworkImage(character.img),fit: BoxFit.cover,):Image.asset('assets/images/null.jpg'),
       ),
     );
   }
