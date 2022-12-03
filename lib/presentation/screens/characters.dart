@@ -61,7 +61,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
         itemCount: allCharacters.length,
         padding: EdgeInsets.zero,
         itemBuilder: (context,index){
-          return const CharacterItem(character: allCharacters,);
+          return  CharacterItem(character: allCharacters[index],);
         });
   }
 
