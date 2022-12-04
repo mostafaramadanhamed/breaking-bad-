@@ -16,6 +16,79 @@ class CharactersScreen extends StatefulWidget {
 
 class _CharactersScreenState extends State<CharactersScreen> {
   late List<Character>allCharacters;
+  late List<Character>searchedForCharacters;
+  bool _isSearching=false;
+  final _searchTextController=TextEditingController();
+
+  Widget buildSearchField(){
+    return TextField(
+      controller: _searchTextController,
+      decoration: const InputDecoration(
+        hintText:'Find a character',
+        hintStyle: TextStyle(
+          fontSize: 18,
+        ),
+      ),
+      style: const TextStyle(
+        fontSize: 18,
+      ),
+      onChanged: (searchedCharacter){
+        addSearchedForItemsToSearchedList(searchedCharacter);
+      },
+    );
+  }
+  void addSearchedForItemsToSearchedList(String searchedCharacter) {
+    searchedForCharacters = allCharacters
+        .where((character) =>
+        character.name.toLowerCase().startsWith(searchedCharacter))
+        .toList();
+    setState(() {});
+  }
+  List<Widget> _buildAppBarActions() {
+    if (_isSearching) {
+      return [
+        IconButton(
+          onPressed: () {
+            _clearSearch();
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.clear,),
+        ),
+      ];
+    } else {
+      return [
+        IconButton(
+          onPressed: _startSearch,
+          icon: const Icon(
+            Icons.search,
+          ),
+        ),
+      ];
+    }
+  }
+
+  void _startSearch() {
+    ModalRoute.of(context)!
+        .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearching));
+
+    setState(() {
+      _isSearching = true;
+    });
+  }
+
+  void _stopSearching() {
+    _clearSearch();
+
+    setState(() {
+      _isSearching = false;
+    });
+  }
+
+  void _clearSearch() {
+    setState(() {
+      _searchTextController.clear();
+    });
+  }
   @override
   void initState() {
     super.initState();
