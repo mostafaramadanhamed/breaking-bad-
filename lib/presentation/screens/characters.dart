@@ -132,20 +132,33 @@ class _CharactersScreenState extends State<CharactersScreen> {
           mainAxisSpacing: 1,
         ),shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: allCharacters.length,
-        padding: EdgeInsets.zero,
-        itemBuilder: (context,index){
-          return  CharacterItem(character: allCharacters[index],);
+        itemCount: _searchTextController.text.isEmpty
+            ? allCharacters.length
+            : searchedForCharacters.length,
+        itemBuilder: (context, index) {
+          return CharacterItem(
+            character: _searchTextController.text.isEmpty
+                ? allCharacters[index]
+                : searchedForCharacters[index],
+          );
         });
   }
-
+  Widget buildAppBarTitle() {
+    return const Text(
+      'Characters',
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: MyColors.primaryColor.shade200,
-        elevation: 0,
-        title: const Text('Characters'),
-        centerTitle: true,
+      backgroundColor: Colors.teal.shade200,
+      appBar: AppBar(
+        leading: _isSearching
+            ? const BackButton(
+        )
+            : Container(),
+        title: _isSearching ? buildSearchField() : buildAppBarTitle(),
+        actions: _buildAppBarActions(),
       ),
       body: buildBlocWidget(),
     );
