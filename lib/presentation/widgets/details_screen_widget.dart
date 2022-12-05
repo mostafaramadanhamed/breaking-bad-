@@ -5,7 +5,7 @@ Widget buildCharacterInfo({required String title, required String val}) {
     text:TextSpan(
       children: [
         TextSpan(
-          text: title,
+          text: '$title : ',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -17,5 +17,14 @@ Widget buildCharacterInfo({required String title, required String val}) {
     ) ,
     maxLines: 1,
     overflow: TextOverflow.ellipsis,
+  );
+}
+
+Widget  buildDivider({required double endIndent}){
+  return Divider(
+    height: 25,
+    color: Colors.tealAccent,
+    endIndent:endIndent ,
+    thickness: 2,
   );
 }

@@ -27,7 +27,7 @@ class CharacterDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.blueGrey.shade800,
       body: CustomScrollView(
         physics:const BouncingScrollPhysics(),
         slivers: [
@@ -42,7 +42,22 @@ class CharacterDetailsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    buildCharacterInfo(title: "Job", val: character.occupation.toString()),
+                    buildCharacterInfo(title: "Job", val: character.occupation.join('/')),
+                    buildDivider(endIndent: MediaQuery.of(context).size.width/1.21,),
+                    buildCharacterInfo(title: "Appeared in ", val: character.category),
+                    buildDivider(endIndent: MediaQuery.of(context).size.width/1.46,),
+                    buildCharacterInfo(title: "Seasons", val: character.appearance.join('/')),
+                    buildDivider(endIndent: MediaQuery.of(context).size.width/1.338,),
+                    buildCharacterInfo(title: "Portrayed", val: character.portrayed),
+                    buildDivider(endIndent: MediaQuery.of(context).size.width/1.369,),
+                    buildCharacterInfo(title: "Status", val: character.status),
+                    buildDivider(endIndent: MediaQuery.of(context).size.width/1.28,),
+                    if(character.betterCallSaulAppearance.isNotEmpty)
+                      buildCharacterInfo(title: "betterCallSaulAppearance", val: character.betterCallSaulAppearance.join('/')),
+                    if(character.betterCallSaulAppearance.isNotEmpty)
+                    buildDivider(endIndent: MediaQuery.of(context).size.width/2.1,),
+
+
                   ],
                 ),
               ),
