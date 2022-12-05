@@ -7,6 +7,8 @@ import 'package:movie/data/services/characters_service.dart';
 import 'package:movie/presentation/screens/characters.dart';
 import 'package:movie/presentation/screens/characters_details.dart';
 
+import 'data/models/characters.dart';
+
 class AppRouter{
 
   late CharactersRepository charactersRepository;
@@ -25,7 +27,8 @@ class AppRouter{
         ));
 
       case characterDetailsScreen:
-        return MaterialPageRoute(builder: (_)=>const CharacterDetailsScreen());
+        final character=settings.arguments as Character ;
+        return MaterialPageRoute(builder: (_)=> CharacterDetailsScreen(character: character,));
     }
   }
 }

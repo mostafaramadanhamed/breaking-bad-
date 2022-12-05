@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie/bussnies_logic/cubit/movie_cubit.dart';
-import 'package:movie/bussnies_logic/cubit/movie_state.dart';
-import 'package:movie/constants/colors.dart';
-import 'package:movie/presentation/widgets/character_item.dart';
-
+import '../../bussnies_logic/cubit/movie_cubit.dart';
+import '../../bussnies_logic/cubit/movie_state.dart';
+import '../../constants/colors.dart';
 import '../../data/models/characters.dart';
+import '../widgets/character_item.dart';
 
 class CharactersScreen extends StatefulWidget {
   const CharactersScreen({Key? key}) : super(key: key);
@@ -44,7 +43,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
         .toList();
     setState(() {});
   }
-  List<Widget> _buildAppBarActions() {
+  List<Widget> buildAppBarActions() {
     if (_isSearching) {
       return [
         IconButton(
@@ -92,27 +91,15 @@ class _CharactersScreenState extends State<CharactersScreen> {
   @override
   void initState() {
     super.initState();
-   BlocProvider.of<CharactersCubit>(context).getAllCharacters();
+    BlocProvider.of<CharactersCubit>(context).getAllCharacters();
 
   }
-  Widget buildBlocWidget(){
-    return BlocBuilder<CharactersCubit,CharactersState>(
-      builder: (context,state){
-        if(state is CharactersLoaded){
-          allCharacters=state.characters;
-          return buildLoadedListWidget();
-        }else{
-          return showLoadingIndicator();
-        }
-      },
-    );
-  }
+
   Widget showLoadingIndicator(){
     return const Center(child:  CircularProgressIndicator(color: MyColors.primaryColor,));
-   }
-
+  }
   Widget buildLoadedListWidget(){
-   return SingleChildScrollView(
+    return SingleChildScrollView(
       child: Container(
         color:MyColors.primaryColor.shade200,
         child: Column(
@@ -126,8 +113,8 @@ class _CharactersScreenState extends State<CharactersScreen> {
   Widget buildCharactersList(){
     return GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-        childAspectRatio: 2/3,
+          crossAxisCount: 2,
+          childAspectRatio: 2/3,
           crossAxisSpacing: 1,
           mainAxisSpacing: 1,
         ),shrinkWrap: true,
@@ -143,11 +130,24 @@ class _CharactersScreenState extends State<CharactersScreen> {
           );
         });
   }
+  Widget buildBlocWidget() {
+    return BlocBuilder<CharactersCubit,CharactersState>(
+      builder: (context,state){
+        if(state is CharactersLoaded){
+          allCharacters=state.characters;
+          return buildLoadedListWidget();
+        }else{
+          return showLoadingIndicator();
+        }
+      },
+    );
+  }
   Widget buildAppBarTitle() {
     return const Text(
       'Characters',
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,9 +158,9 @@ class _CharactersScreenState extends State<CharactersScreen> {
         )
             : Container(),
         title: _isSearching ? buildSearchField() : buildAppBarTitle(),
-        actions: _buildAppBarActions(),
+        actions: buildAppBarActions(),
       ),
-      body: buildBlocWidget(),
+      body:  buildBlocWidget(),
     );
   }
 }
