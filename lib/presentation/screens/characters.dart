@@ -21,6 +21,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
   Widget buildSearchField(){
     return TextField(
+      cursorColor: Colors.black,
       controller: _searchTextController,
       decoration: const InputDecoration(
         hintText:'Find a character',

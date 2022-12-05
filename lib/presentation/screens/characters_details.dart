@@ -42,6 +42,8 @@ class CharacterDetailsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    buildCharacterInfo(title: "Actor name", val: character.name),
+                    buildDivider(endIndent: MediaQuery.of(context).size.width/1.43,),
                     buildCharacterInfo(title: "Job", val: character.occupation.join('/')),
                     buildDivider(endIndent: MediaQuery.of(context).size.width/1.21,),
                     buildCharacterInfo(title: "Appeared in ", val: character.category),
