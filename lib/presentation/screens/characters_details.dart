@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie/data/models/characters.dart';
 
+import '../widgets/details_screen_widget.dart';
+
 class CharacterDetailsScreen extends StatelessWidget {
   final Character character;
   const CharacterDetailsScreen({Key? key, required this.character}) : super(key: key);
@@ -25,7 +27,7 @@ class CharacterDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: Colors.teal,
       body: CustomScrollView(
         physics:const BouncingScrollPhysics(),
         slivers: [
@@ -37,13 +39,10 @@ class CharacterDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 decoration:const BoxDecoration(),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text('Name'),
-                        Text(character.name),
-                      ],
-                    )
+                    buildCharacterInfo(title: "Job", val: character.occupation.toString()),
                   ],
                 ),
               ),
@@ -53,4 +52,5 @@ class CharacterDetailsScreen extends StatelessWidget {
       ),
     );
   }
+
 }
