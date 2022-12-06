@@ -16,4 +16,12 @@ class CharactersCubit extends Cubit<CharactersState> {
     });
     return characters;
   }
+
+  List<Character>getCharactersQuotes(){
+    charactersRepository.getAllCharacters().then((characters) {
+      emit(CharactersLoaded(characters));
+      this.characters=characters;
+    });
+    return characters;
+  }
 }

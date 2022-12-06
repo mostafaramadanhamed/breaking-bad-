@@ -23,4 +23,16 @@ catch(ex){
    return [];
 }
  }
+ Future<List<dynamic>>getCharacterQuotes(String charName)async{
+try{
+
+  Response response=await dio.get('quote',queryParameters: {'author':charName});
+  return response.data;
+}
+catch(ex){
+  print('Error in $ex');
+   return [];
+}
+ }
+
 }
