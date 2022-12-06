@@ -8,6 +8,7 @@ class CharacterDetailsScreen extends StatelessWidget {
   const CharacterDetailsScreen({Key? key, required this.character}) : super(key: key);
  Widget buildSliverAppBar(){
    return SliverAppBar(
+     elevation: 0,
      expandedHeight: 600,
      pinned: true,
      stretch: true,
@@ -58,8 +59,9 @@ class CharacterDetailsScreen extends StatelessWidget {
                       buildCharacterInfo(title: "betterCallSaulAppearance", val: character.betterCallSaulAppearance.join('/')),
                     if(character.betterCallSaulAppearance.isNotEmpty)
                     buildDivider(endIndent: MediaQuery.of(context).size.width/2.1,),
-
-
+                    SizedBox(
+                      height: 400,
+                    ),
                   ],
                 ),
               ),
