@@ -28,7 +28,9 @@ class AppRouter{
 
       case characterDetailsScreen:
         final character=settings.arguments as Character ;
-        return MaterialPageRoute(builder: (_)=> CharacterDetailsScreen(character: character,));
+        return MaterialPageRoute(builder: (_)=> BlocProvider(
+            create: (BuildContext context)=>charactersCubit,
+        child: CharacterDetailsScreen(character: character,)));
     }
   }
 }

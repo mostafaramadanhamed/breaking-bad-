@@ -58,10 +58,12 @@ class CharacterDetailsScreen extends StatelessWidget {
                     if(character.betterCallSaulAppearance.isNotEmpty)
                       buildCharacterInfo(title: "betterCallSaulAppearance", val: character.betterCallSaulAppearance.join('/')),
                     if(character.betterCallSaulAppearance.isNotEmpty)
-                    buildDivider(endIndent: MediaQuery.of(context).size.width/2.1,),
-                    SizedBox(
-                      height: 400,
+                      buildDivider(endIndent: MediaQuery.of(context).size.width/2.1,),
+                    const SizedBox(
+                      height: 20,
                     ),
+
+
                   ],
                 ),
               ),
