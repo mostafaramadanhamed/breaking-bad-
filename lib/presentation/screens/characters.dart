@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 import '../../bussnies_logic/cubit/movie_cubit.dart';
 import '../../bussnies_logic/cubit/movie_state.dart';
 import '../../constants/colors.dart';
@@ -148,7 +149,33 @@ class _CharactersScreenState extends State<CharactersScreen> {
       'Characters',
     );
   }
-
+  Widget buildNoInternetWidget(){
+    return Center(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height/15,
+            ),
+            Image.asset('assets/images/no_interner.png',
+              height:MediaQuery.of(context).size.height/1.5 ,
+              width: MediaQuery.of(context).size.width,),
+            const Text(
+              ' Can\'t connect .. check your internet',
+              style: TextStyle(
+                fontSize: 22,
+                color: MyColors.primaryColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -161,7 +188,23 @@ class _CharactersScreenState extends State<CharactersScreen> {
         title: _isSearching ? buildSearchField() : buildAppBarTitle(),
         actions: buildAppBarActions(),
       ),
-      body:  buildBlocWidget(),
+      body:  OfflineBuilder(
+      connectivityBuilder: (
+      BuildContext context,
+      ConnectivityResult connectivity,
+      Widget child,
+    ) {
+      final bool connected = connectivity != ConnectivityResult.none;
+    if(connected){
+      return buildBlocWidget();
+    }
+    else{
+      return buildNoInternetWidget();
+    }
+      },
+        child: showLoadingIndicator(),
+      )
+      //buildBlocWidget(),
     );
   }
 }
